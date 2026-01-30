@@ -44,20 +44,20 @@ npm start
 ```mermaid
 sequenceDiagram
     autonumber
-    actor User as 사용자
-    participant React as Frontend (React)
+    actor User as "사용자"
+    participant React as "Frontend (React)"
     
-    box rgba(255, 0, 0, 0.1) Write Side (쓰기 전용)
-    participant WriteAPI as Write API (Django:7000)
-    database Postgres as PostgreSQL (원본 DB)
+    box "Write Side (Django)"
+    participant WriteAPI as "Write API (7000)"
+    participant Postgres as "PostgreSQL (Write DB)"
     end
     
-    participant Kafka as Kafka (Event Broker)
+    participant Kafka as "Kafka (Broker)"
     
-    box rgba(0, 0, 255, 0.1) Read Side (읽기 전용)
-    participant ReadConsumer as Consumer (동기화)
-    database Mongo as MongoDB (조회용 DB)
-    participant ReadAPI as Read API (Django:8000)
+    box "Read Side (Django)"
+    participant ReadConsumer as "Consumer (Sync)"
+    participant Mongo as "MongoDB (Read DB)"
+    participant ReadAPI as "Read API (8000)"
     end
 
     Note over User, WriteAPI: 1. 데이터 생성 (Command)
